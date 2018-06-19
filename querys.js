@@ -38,3 +38,6 @@ let companiesPrice40000000 = db.companies.find({ 'acquisition.price_amount': 400
 // Find all the companies that have been acquired on January of 2014. Retrieve only the acquisition and name fields.
 let companiesAcquired2014 = db.companies.find({ 'acquisition.acquired_month': 1, 'acquisition.acquired_year': 2014 }, { name: 1, _id: 0, 'acquisition.acquired_month': 1, 'acquisition.acquired_year': 1 });
 
+companiesAcquired2014.forEach(element => {
+    print(JSON.stringify(element));
+});
