@@ -54,7 +54,6 @@ __Test:__
   * Change Bob’s privilege to normal user.
   * Find all employees whose favorite artist is equal to Picasso.
   * Delete the user John.
-  * Add a bonus of 15 to all those who have a bonus less than 10.
 
 ## Restaurants
 
