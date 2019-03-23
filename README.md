@@ -4,6 +4,21 @@ Mongo Shell Quick Reference:
 
 https://docs.mongodb.com/manual/reference/mongo-shell/
 
+## Deliverables
+
+Fork this repository
+
+Copy your successful queries to `queries.js`
+
+Example:
+```
+// Employees
+
+1. db.employees.find()
+```
+
+Pull request! ;)
+
 ## Employees
 
 Configure your environment:
