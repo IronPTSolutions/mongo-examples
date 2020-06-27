@@ -57,9 +57,11 @@ db.companies.find({ $or: [{ founded_year: 2005 }, { number_of_employees: 20 }] }
 db.companies.find({ $nor: [{ category_code:'web' }, {  category_code:'social' }] }, {name: 1, category_code: 1, _id: 0}).limit(20)
 
 // Find all the companies that were not founded on 'June'. Skip the first 50 results and retrieve only the founded_month and name fields.
-
+db.companies.find({ founded_month: { $ne: 6 } }, {name: 1, founded_month: 1, _id: 0}).skip(5)
 
 // Find all the companies that have 50 employees, but do not correspond to the 'web' category_code.
+db.companies.find({ number_of_employees: 50, category_code: { $ne: 'web' } })
+
 // Find all the companies that have been founded on the 1st of the month, but does not have either 50 employees nor 'web' as their category_code. Retrieve only the founded_day and name and limit the search to 5 documents.
 // Find all the companies which the price_amount of the acquisition was 40.000.000. Sort them by name.
 // Find all the companies that have been acquired on January of 2014. Retrieve only the acquisition and name fields.
