@@ -51,12 +51,14 @@ db.companies.find({ category_code:'web' }).limit(50)
 db.companies.find({ category_code:'enterprise', founded_year: 2005 }, { name: 1, founded_year: 1, _id: 0 })
 
 // **Find all the companies that have been founded on the 2000 or have 20 employees. Sort them descendingly by their number_of_employees.
-//db.companies.find({ $or: [{ founded_year: 2005 }, { number_of_employees: 20 }] }
+db.companies.find({ $or: [{ founded_year: 2005 }, { number_of_employees: 20 }] }, {number_of_employees: 1}).sort( { number_of_employees: -1 } )
 
 // Find all the companies that do not include web nor social on their category_code. Limit the search to 20 documents and retrieve only their name and category_code.
 db.companies.find({ $nor: [{ category_code:'web' }, {  category_code:'social' }] }, {name: 1, category_code: 1, _id: 0}).limit(20)
 
 // Find all the companies that were not founded on 'June'. Skip the first 50 results and retrieve only the founded_month and name fields.
+
+
 // Find all the companies that have 50 employees, but do not correspond to the 'web' category_code.
 // Find all the companies that have been founded on the 1st of the month, but does not have either 50 employees nor 'web' as their category_code. Retrieve only the founded_day and name and limit the search to 5 documents.
 // Find all the companies which the price_amount of the acquisition was 40.000.000. Sort them by name.
