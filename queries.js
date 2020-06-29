@@ -63,5 +63,10 @@ db.companies.find({ founded_month: { $ne: 6 } }, {name: 1, founded_month: 1, _id
 db.companies.find({ number_of_employees: 50, category_code: { $ne: 'web' } })
 
 // Find all the companies that have been founded on the 1st of the month, but does not have either 50 employees nor 'web' as their category_code. Retrieve only the founded_day and name and limit the search to 5 documents.
+db.companies.find({founded_day: 1, $or: [{number_of_employees: {$ne: 50}}, {category_code: {$ne: 'web'}}]}, {founded_day:1, name:1 }).limit(5)
+
 // Find all the companies which the price_amount of the acquisition was 40.000.000. Sort them by name.
+db.companies.find({'acquisition.price_amount': 40000000}).sort({name: 1})
+
 // Find all the companies that have been acquired on January of 2014. Retrieve only the acquisition and name fields.
+db.companies.find({'acquisition.acquired_month': 1, 'acquisition.acquired_year': 2014}, {acquisition: 1, name:1, _id:0})
