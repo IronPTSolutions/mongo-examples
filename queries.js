@@ -71,6 +71,9 @@ db.restaurants.deleteMany({
   'address.zipcode': '10466'
 })
 
+
+// COMPANIES
+
 // Find all the companies that include 'Facebook' on the name field.
 db.companies.find({
   name: 'Facebook'
@@ -83,14 +86,7 @@ db.companies.find({
   _id: 0
 }).pretty()
 // Find all the companies named "Twitter", and retrieve only their name, category_code and founded_year fields.
-db.companies.find({
-  name: 'Twitter'
-}, {
-  name: 1,
-  category_code: 1,
-  founded_year: 1,
-  _id: 0
-}).pretty()
+db.companies.find({name: 'Twitter'}, {name: 1,category_code: 1,founded_year: 1,_id: 0}).pretty()
 // Find all the companies who have web as their category_code, but limit the search to 50 companies.
 db.companies.find({
   category_code: 'web'
@@ -104,7 +100,12 @@ db.companies.find({ category_code : {$nin : ["web", "social"]}}, {name: 1, categ
 // Find all the companies that were not founded on 'June'. Skip the first 50 results and retrieve only the founded_month and name fields.
 db.companies.find({ founded_month : {$nin : [6]}}, {name: 1, founded_month: 1, _id: 0}).skip(50).pretty()
 // Find all the companies that have 50 employees, but do not correspond to the 'web' category_code.
-db.companies.find({$and: [{category_code : {$nin : ['web']}}, {number_of_employees: { $gte: 50 }}] }).pretty()
-// Find all the companies that have been founded on the 1st of the month, but does not have either 50 employees nor 'web' as their category_code. Retrieve only the founded_day and name and limit the search to 5 documents.
+db.companies.find({$and: [{category_code : {$nin : ['web']}}, {number_of_employees: { $gte: 50 }}]}).pretty()
+// Find all the companies that have been founded on the 1st of the month, but does not have either 50 employees nor 'web' as their category_code.
+// Retrieve only the founded_day and name and limit the search to 5 documents.
+db.companies.find({$and: [{funded_day: 1}, {number_of_employees: { $lte: 50 }}, {category_code: { $ne: 'web' }}]}, {funded_day: 1, name: 1, _id:0}).limit(5).pretty()
+
 // Find all the companies which the price_amount of the acquisition was 40.000.000. Sort them by name.
+db.companies.find({'acquisition.price_amount': {$gt: 40000000}}, {name: 1, _id: 0}).sort( { name: -1 } ).pretty()
 // Find all the companies that have been acquired on January of 2014. Retrieve only the acquisition and name fields.
+db.companies.find( {$and: [ {'acquisition.acquired_year': 2014}, {'acquisition.acquired_month': 1}]}, {name: 1, acquisition: 1, _id: 0}).pretty()
