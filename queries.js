@@ -50,6 +50,29 @@
 //Companies
 
 
+1. db.companies.find({ name : "Facebook"})
+
+2. db.companies.find({ "category_code": "web" }, { name: 1, _id: 0 })
+
+3. db.companies.find({ name: "Twitter" }, { name: 1, _id: 0, "category_code": 1, "founded_year": 1 })
+
+4. db.companies.find({ "category_code": "web" }).limit(50)
+
+5. db.companies.find({ "category_code": "enterprise", "founded_year": 2005 }, { name: 1, "category_code": 1, "founded_year": 1, _id: 0 })
+
+6. db.companies.find({ $or: [{ "founded_year": 2000 }, { "number_of_employees": 20 }] }).sort({ "number_of_employees": -1 })
+
+7. db.companies.find({ $nor: [{ "category_code": "web" }, { "category_code": "social" }] }, { name: 1, "category_code": 1, _id: 0 }).limit(20)
+
+8. db.companies.find({ "founded_month": { $not: { $eq: 6 } } }).skip(50)
+
+9. db.companies.find({ number_of_employees: 50, category_code: { $not: { $eq: "web" } } })
+
+10.db.companies.find({ founded_day: 1, number_of_employees: {$not: {$eq: 50}}, category_code: {$not: {$eq: "web"}} }, { founded_day: 1, name: 1, _id: 0 }).limit(5)
+
+11. db.companies.find({ "acquisition.price_amount": 40000000 }).sort({ name: 1 })
+
+12. db.companies.find({ "acquisition.acquired_year": 2014 }, { acquisition: 1, name: 1 })
 
 
 
