@@ -24,29 +24,32 @@ db.employees.find({"favorites.artist": "Picasso"}).pretty()
 db.employees.find({"name": "John"}).pretty() // get the id to make sure it is John
 db.employees.deleteOne({"_id" : ObjectId("600c0e07ad23a54933b9cdec")})
 
+
 // -> Restaurants ------------------------------------------------------------------------------------
 
 // 1. List all the restaurants.
-
+db.restaurants.find().pretty()
 // 2. Find all the restaurants and display only the fields restaurant_id, name, borough and cuisine.
-
+db.restaurants.find({}, {"restaurant_id": 1, "name": 1, "borough": 1, "cuisine": 1}).pretty()
 // 3. Find all the restaurants and display only the fields restaurant_id, name, borough and zip code.
-
+db.restaurants.find({}, {"restaurant_id": 1, "name": 1, "borough": 1, "address.zipcode": 1}).pretty()
 // 4. Find the restaurants which are in the borough Bronx.
-
+db.restaurants.find({"borough": "Bronx"}).pretty()
 // 5. Find the restaurants which are in the borough Brooklyn with Steak cuisine.
-
+db.restaurants.find({"borough": "Brooklyn", "cuisine": "Steak"}).pretty()
 // 6. Find the restaurants which have achieved a score bigger than 90.
-
+db.restaurants.find({"grades.[]$.score": {$gt: 90}}) // - NOT FINISHED. CLASS !!!!!!!
 // 7. Find the restaurants that do not prepare any Bakery cuisine and with a grade score equal or bigger than 70.
-
+// - NOT FINISHED. CLASS !!!!!!!
 // 8. Find the restaurants which do not prepare any Chinese cuisine and have achieved a grade point A which do not belong to the borough Manhattan.
-
+// - NOT FINISHED. CLASS !!!!!!!
 // 9. Update restaurants with 'American ' cuisine to 'American' (without the space!!!)
-
+db.restaurants.updateMany({'cuisine': 'American '}, { $set: {'cuisine': 'American'}})
 // 10. Update Morris Park Bake Shop address street to Calle falsa 123.
-
+db.restaurants.updateOne({ name: 'Morris Park Bake Shop' }, { $set: { 'address.street': 'Calle falsa 123'}})
 // 11. Delete all the restaurants with address zipcode 10466.
+db.restaurants.deleteMany({"address.zipcode": "10466"})
+
 
 // -> Companies --------------------------------------------------------------------------------------
 
