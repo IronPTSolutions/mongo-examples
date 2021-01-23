@@ -12,7 +12,7 @@
 11. db.employees.deleteOne({ name: "John" })
 
 // RESTAURANTS
-1. db.restaurants.fin()
+1. db.restaurants.find()
 2. db.restaurants.find({}, { restaurant_id: 1, name: 1, borough: 1, cuisine: 1 })
 3. db.restaurants.find({}, { restaurant_id: 1, name: 1, borough: 1, zicode: 1 })
 4. db.restaurants.find({ borough: "Bronx" })
