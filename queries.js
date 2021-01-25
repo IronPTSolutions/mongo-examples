@@ -38,11 +38,11 @@ db.restaurants.find({"borough": "Bronx"}).pretty()
 // 5. Find the restaurants which are in the borough Brooklyn with Steak cuisine.
 db.restaurants.find({"borough": "Brooklyn", "cuisine": "Steak"}).pretty()
 // 6. Find the restaurants which have achieved a score bigger than 90.
-db.restaurants.find({"grades.[]$.score": {$gt: 90}}) // - NOT FINISHED. CLASS !!!!!!!
+db.restaurants.find({"grades.score": {$gt: 90}}).pretty() // -> ¿ .$[] solo para update ?
 // 7. Find the restaurants that do not prepare any Bakery cuisine and with a grade score equal or bigger than 70.
-// - NOT FINISHED. CLASS !!!!!!!
+db.restaurants.find({"cuisine": {$ne: "Bakery"}, "grades.score": {$gt: 70}}).pretty()
 // 8. Find the restaurants which do not prepare any Chinese cuisine and have achieved a grade point A which do not belong to the borough Manhattan.
-// - NOT FINISHED. CLASS !!!!!!!
+db.restaurants.find({"cuisine": {$ne: "Chinese"}, "borough": {$ne: "Manhattan"}, "grades.grade": "A"})
 // 9. Update restaurants with 'American ' cuisine to 'American' (without the space!!!)
 db.restaurants.updateMany({'cuisine': 'American '}, { $set: {'cuisine': 'American'}})
 // 10. Update Morris Park Bake Shop address street to Calle falsa 123.
