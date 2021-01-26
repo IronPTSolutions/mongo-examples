@@ -38,6 +38,7 @@ db.employees.deleteOne({name: "Jhon"})
 db.restaurants.find()
 
 //Find all the restaurants and display only the fields restaurant_id, name, borough and cuisine.
+db.restaurants.find()
 
 //Find all the restaurants and display only the fields restaurant_id, name, borough and zip code.
 
