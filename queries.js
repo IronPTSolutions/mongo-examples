@@ -94,7 +94,7 @@ db.companies.find({"number_of_employees":{$gte:20}, "founded_year":{$eq:2000}}, 
 
 
 Find all the companies that do not include web nor social on their category_code. Limit the search to 20 documents and retrieve only their name and category_code.
-db.companies.find({"category_code":{$ne:"web"}, "category_code":{$ne:"social"}}, {name:1, category_code:1, _id:0}).limit(20).pretty()
+db.companies.find({"category_code":{$nin: ["web", "social"]}}, {name:1, category_code:1, _id:0}).limit(20).pretty()
 
 Find all the companies that were not founded on 'June'. Skip the first 50 results and retrieve only the founded_month and name fields.
 db.companies.find({"founded_month":{$ne:6}}, {name:1, founded_month:1, _id:0}).skip(50).pretty()
