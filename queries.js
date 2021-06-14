@@ -71,3 +71,31 @@ db.companies.find({name: /facebook/i }, {name: 1}).pretty()
 db.companies.find({category_code: "web"}, {_id: 0, name: 1}).pretty()
 
 //3
+db.companies.find({name: "Twitter"}, {"name": 1, "category_code": 1, "founded_year": 1, _id: 0}).pretty();
+
+//4
+db.companies.find({category_code: "web"}).limit(50).pretty()
+
+//5
+db.companies.find({category_code: "enterprise", founded_year: 2005}, {name: 1, category_code: 1, founded_year: 1, _id: 0}).pretty()
+
+//6
+db.companies.find({$or: [{founded_year: 2000}, {number_of_employees: 20}]}).sort({number_of_employees: -1}).pretty()
+
+//7
+db.companies.find({$and: [{category_code: {$ne: "web"}}, {category_code: {$ne: "social"}}]}, {name: 1, category_code: 1, _id: 0}).limit(20).pretty()
+
+//8
+db.companies.find({founded_month: {$ne: 6}}, {founded_month: 1, name: 1, _id: 0}).skip(50).pretty()
+
+//9
+db.companies.find({number_of_employees: 50, category_code: {$ne: "web"}}, {name: 1, number_of_employees: 1, category_code: 1,_id: 0}).pretty()
+
+//10
+db.companies.find({founded_day: 1, number_of_employees: {$ne: 50}, category_code: {$ne: "web"}}, {founded_day: 1, name: 1, _id: 0}).limit(5).pretty()
+
+//11
+db.companies.find({"acquisitions.price_amount":40000000}).sort({name:1}).pretty()
+
+//12
+db.companies.find({$and:[ {"acquisition.acquired_year":2014, "acquisition.acquired_month":1}]},{name:1, acquisition:1}).pretty()
