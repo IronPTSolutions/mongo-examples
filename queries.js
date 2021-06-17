@@ -19,7 +19,7 @@ db.employees.updateOne({name:"Bob"},{$set:{privileges:"user"}})
 //employees 10
 db.employees.find({"favorites.artist": "Picasso"}).pretty()
 //employyes 11
-> db.employees.deleteOne({_id: ObjectId("60c475b64fa53a6877b8e03a")})
+db.employees.deleteOne({_id: ObjectId("60c475b64fa53a6877b8e03a")})
 
 
 //restaurants 1
@@ -37,14 +37,35 @@ db.restaurants.find({"grades.score":{$gt : 90}})
 //restaurants 7
 db.restaurants.find({"cuisine": {$ne:"Bakery"}, "grades.score": {$gte: 70}})
 //restaurants 8
-
+db.restaurants.find({$and:[ {cuisine:{$ne:"Chinese"}, "grades.grade":"A",borough:{$ne:"Manhattan"}}]})
 //restaurants 9
-
+db.restaurants.updateMany({cuisine: "American "}, { $set:{cuisine: "American"}})
 //restaurants 10
-
+db.restaurants.updateOne({name: "Morris Park Bake Shop"},{$set: {"address.street": "Calle falsa 123"}})
 //restaurants 11
+db.restaurants.deleteMany({"address.zipcode": 10466})
+ 
 
+//companies 1
 
+//companies 2
 
+//companies 3
 
+//companies 4
 
+//companies 5
+
+//companies 6
+
+//companies 7
+
+//companies 8
+
+//companies 9
+
+//companies 10
+
+//companies 11
+
+//companies 12
