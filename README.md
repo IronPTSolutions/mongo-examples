@@ -25,7 +25,7 @@ Configure your environment:
 
 __1__ Download [employees.json](https://raw.githubusercontent.com/IronPTSolutions/mongo-examples/master/datasets/employees.json)
 
-__2__ Load employees into work database (terminal) : `mongoimport --drop --db work --collection employees --file path/to/employees.json --jsonArray`
+__2__ Load employees into work database (terminal) : `mongoimport --drop --db work --collection employees --file datasets/employees.json --jsonArray`
 
 __3__ Check if the data was loaded properly (terminal) : `mongo work --eval "db.employees.find().pretty()"`
 
@@ -131,7 +131,7 @@ Configure your environment:
 
 __1__ Download [companies.json](https://raw.githubusercontent.com/IronPTSolutions/mongo-examples/master/datasets/companies.json)
 
-__3__ Load employees into work database (terminal) : `mongoimport --drop --db crunch --collection companies --file path/to/companies.json`
+__3__ Load employees into work database (terminal) : `mongoimport --drop --db crunch --collection companies --file datasets/companies.json`
 
 __4__ Check if the data was loaded properly (terminal) : `mongo crunch --eval "db.companies.find().pretty()"`
 
