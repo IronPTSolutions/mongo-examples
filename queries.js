@@ -25,26 +25,31 @@ print('5. Find all employees that are over 30.')
 db.employees.find({'age': {$gt: 30}})
 
 
+// Find all employees that are less than or equal to 30.
+print('6. Find all employees that are less than or equal to 30.')
+db.employees.find({'age': {$lte: 30}})
+
+
 // Find all the employees whose favorite food is pizza.
-print('6. Find all the employees whose favorite food is pizza.')
+print('7. Find all the employees whose favorite food is pizza.')
 db.employees.find({'favorites.food': 'pizza'})
 
 
 // Change Willy’s personal phone number to "93-123-45-67".
-print('7. Change Willy’s personal phone number to "93-123-45-67".')
+print('8. Change Willy’s personal phone number to "93-123-45-67".')
 db.employees.updateOne({name: 'Willy'}, {$set: {'phone.personal': '93-123-45-67'}})
 
 
 // Change Bob’s privilege to normal user.
-print('8. Change Bob’s privilege to normal user.')
+print('9. Change Bob’s privilege to normal user.')
 db.employees.updateOne({name: 'Bob'}, {$set: {privileges: 'user'}})
 
 
 // Find all employees whose favorite artist is equal to Picasso.
-print('9. Find all employees whose favorite artist is equal to Picasso.')
+print('10. Find all employees whose favorite artist is equal to Picasso.')
 db.employees.find({'favorites.artist': 'Picasso'})
 
 
 // Delete the user John.
-print('10. Delete the user John.')
+print('11. Delete the user John.')
 db.employees.deleteOne({name: 'John'})
