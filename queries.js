@@ -1,55 +1,82 @@
 print('Employees')
 
 // List all the employees.
-print('1. List all Employees')
 db.employees.find({}).forEach(printjsononeline)
 
 
 // Find the employee with whose name is Steve.
-print('2. Find the employee with whose name is Steve.')
 db.employees.find({name: 'Steve'})
 
 
 // Find all employees whose age is greater than 30.
-print('3. Find all employees whose age is greater than 30.')
 db.employees.find({'age': {$gt: 30}})
 
 
 // Find the employee whose extension is 2143.
-print('4. Find the employee whose extension is 2143.')
 db.employees.find({'phone.ext': '2143'})
 
 
 // Find all employees that are over 30.
-print('5. Find all employees that are over 30.')
 db.employees.find({'age': {$gt: 30}})
 
 
 // Find all employees that are less than or equal to 30.
-print('6. Find all employees that are less than or equal to 30.')
 db.employees.find({'age': {$lte: 30}})
 
 
 // Find all the employees whose favorite food is pizza.
-print('7. Find all the employees whose favorite food is pizza.')
 db.employees.find({'favorites.food': 'pizza'})
 
 
 // Change Willy’s personal phone number to "93-123-45-67".
-print('8. Change Willy’s personal phone number to "93-123-45-67".')
 db.employees.updateOne({name: 'Willy'}, {$set: {'phone.personal': '93-123-45-67'}})
 
 
 // Change Bob’s privilege to normal user.
-print('9. Change Bob’s privilege to normal user.')
 db.employees.updateOne({name: 'Bob'}, {$set: {privileges: 'user'}})
 
 
 // Find all employees whose favorite artist is equal to Picasso.
-print('10. Find all employees whose favorite artist is equal to Picasso.')
 db.employees.find({'favorites.artist': 'Picasso'})
 
 
 // Delete the user John.
-print('11. Delete the user John.')
 db.employees.deleteOne({name: 'John'})
+
+
+
+
+print('Restaurants')
+
+// List all the employees.
+db.restaurants.find({})
+
+// Find all the restaurants and display only the fields restaurant_id, name, borough and cuisine.
+db.restaurants.find({}, {'restaurant_id': 1, 'name': 1, 'borough': 1, 'cuisine': 1})
+
+// Find all the restaurants and display only the fields restaurant_id, name, borough and zip code.
+db.restaurants.find({}, {'restaurant_id': 1, 'name': 1, 'borough': 1, 'address.zipcode': 1})
+
+// Find the restaurants which are in the borough Bronx.
+db.restaurants.find({borough: 'Bronx'})
+
+// Find the restaurants which are in the borough Brooklyn with Steak cuisine.
+db.restaurants.find({borough: 'Brooklyn', cuisine: 'Steak'})
+
+// Find the restaurants which have achieved a score bigger than 90.
+db.restaurants.find({'grades.score': {$gt: 90}})
+
+// Find the restaurants that do not prepare any Bakery cuisine and with a grade score equal or bigger than 70.
+db.restaurants.find({'cuisine': {$ne: 'Bakery'}, 'grades.score': {$gte: 70}})
+
+// Find the restaurants which do not prepare any Chinese cuisine and have achieved a grade point A which do not belong to the borough Manhattan.
+db.restaurants.find({'cuisine': {$ne: 'Chinese'}, 'grades.grade': 'A', 'borough': {$ne: 'Manhattan'}})
+
+// Update restaurants with 'American ' cuisine to 'American' (without the space!!!)
+db.restaurants.updateMany({'cuisine': 'American '}, {$set: {'cuisine': 'American'}})
+
+// Update Morris Park Bake Shop address street to Calle falsa 123.
+db.restaurants.updateOne({name: 'Morris Park Bake Shop'}, {$set: {'address.street': 'Calle falsa 123'}})
+
+// Delete all the restaurants with address zipcode 10466.
+db.restaurants.deleteMany({'address.zipcode': '10466'})
