@@ -80,6 +80,10 @@ db.restaurants.deleteMany({"address.zipcode":"10466"})
 
 
 
+//COMPANIES
+
+
+
 //Find all the companies that include 'Facebook' on the name field.
 db.companies.find({name:'Facebook'})
 
