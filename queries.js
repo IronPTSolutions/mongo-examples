@@ -22,10 +22,10 @@ db.employees.find({"age":{$lte:30}})
 db.employees.find({"favorites.food":"pizza"})
 
 //Change Willy’s personal phone number to "93-123-45-67".
-db.employees.updateOne({"name":"Willy"}, {$set:"phone.personal":"93-123-45-67"})
+db.employees.updateOne({"name":"Willy"}, {$set: {"phone.personal":"93-123-45-67"}})
 
 //Change Bob’s privilege to normal user.
-db.employees.updateOne({"name":"Bob"}, {$set:"privileges":"user"})
+db.employees.updateOne({"name":"Bob"}, {$set:{"privileges":"user"}})
 
 //Find all employees whose favorite artist is equal to Picasso.
 db.employees.find({"favorites.artist":"Picasso"})
