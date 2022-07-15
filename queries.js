@@ -67,4 +67,4 @@ db.restaurants.updateMany({"cuisine": "American "}, {$set:{"cuisine":"American"}
 db.restaurants.updateOne({"name":" Morris Park Bake Shop"},{$set:{"adress.street":"Calle falsa 123"}})
 
 //Delete all the restaurants with address zipcode 10466.
-db.restaurants.deleteOne({"address.zipcode":10466})
+db.restaurants.deleteMany({"address.zipcode":"10466"})
