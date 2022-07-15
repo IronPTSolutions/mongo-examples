@@ -1,7 +1,7 @@
 //1. EMPLOYEES
 
 //List all the employees.
-db.employees.find({},{name: 1})
+db.employees.find({},{_id: 0,name: 1})
 
 //Find the employee with whose name is Steve.
 db.employees.find({"name":"Steve"})
