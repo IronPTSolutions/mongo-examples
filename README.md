@@ -114,6 +114,7 @@ Restaurant schema:
 __Test:__
 
   * List all the restaurants.
+  
   * Find all the restaurants and display only the fields restaurant_id, name, borough and cuisine.
   * Find all the restaurants and display only the fields restaurant_id, name, borough and zip code.
   * Find the restaurants which are in the borough Bronx.
