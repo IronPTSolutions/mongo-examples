@@ -65,25 +65,24 @@ db.restaurants.find({$and: [{cuisine: {$ne :"Bakery"}, "grades.score": {$gte : 7
 //Find the restaurants which do not prepare any Chinese cuisine and have achieved a grade point A which do not belong to the borough Manhattan.
 db.restaurants.find({$and:[{cuisine: {$ne : "Chinese"}, "grades.grade": {$eq : "A"}, borough: {$ne : "Manhattan"}}]});
 //Update restaurants with 'American ' cuisine to 'American' (without the space!!!)
-db.restaurants.updateMany({cuisine: "American " }, {$set: {cuisine : "American"}})
+db.restaurants.updateMany({cuisine: "American " }, {$set: {cuisine : "American"}});
 //Update Morris Park Bake Shop address street to Calle falsa 123.
-db.restaurants.updateOne({name: "Morris Park Bake Shop" }, {$set: {"address.street" : "Calle falsa 123"}})
+db.restaurants.updateOne({name: "Morris Park Bake Shop" }, {$set: {"address.street" : "Calle falsa 123"}});
 //Delete all the restaurants with address zipcode 10466.
 db.restaurants.deleteMany({"address.zipcode" : "10466"})
 
 // COMPANIES // 
 
 // Find all the companies that include 'Facebook' on the name field.
-db.companies.find({name: "Facebook"})
-// Let's do it one more together:
+db.companies.find({name: "Facebook"});
 // Find all the companies which category_code is 'web'. Retrive only their name field:
-db.companies.find({category_code: "web"}, {name: 1})
+db.companies.find({category_code: "web"}, {name: 1});
 // Find all the companies named "Twitter", and retrieve only their name, category_code and founded_year fields.
-db.companies.find({category_code: "web"}, {name: 1, category_code: 1, founded_year: 1})
+db.companies.find({category_code: "web"}, {name: 1, category_code: 1, founded_year: 1});
 // Find all the companies who have web as their category_code, but limit the search to 50 companies.
 db.companies.find({category_code: "web"}).limit(50)
 // Find all the companies which category_code is 'enterprise' and have been founded in 2005. Retrieve only the name, category_code and founded_year fields.
-db.companies.find({category_code: "enterprise", founded_year: {$eq: 2005}}, {name: 1, category_code: 1, founded_year: 1})
+db.companies.find({$and: [{category_code: "enterprise", founded_year: {$eq: 2005}}]}, {name: 1, category_code: 1, founded_year: 1});
 // Find all the companies that have been founded on the 2000 or have 20 employees. Sort them descendingly by their number_of_employees.
 db.companies.find({$or: [{founded_year: {$eq: 2005}}, {number_of_employees: {$eq: 20}}]}).sort({"number_of_employees":-1})
 // Find all the companies that do not include web nor social on their category_code. Limit the search to 20 documents and retrieve only their name and category_code.
