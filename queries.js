@@ -51,3 +51,20 @@ db.restaurants.updateMany({cuisine: "American "}, { $set: {cuisine: "American"}}
 db.restaurants.updateOne({name: "Morris Park Bake Shop"}, { $set: {'address.street': 'Calle falsa 123'}});
 
 db.restaurants.deleteMany({'address.zipcode': '10466'});
+
+
+
+
+
+
+db.companies.find({name: "Facebook"});
+
+db.companies.find({category_code: "web"}, {"name": 1});
+
+db.companies.find({name: "Twitter"}, {"name": 1, "category_code": 1, "founded_year": 1});
+
+db.companies.find({category_code: "web"}).limit(50);
+
+db.companies.find({$and: [{category_code: "enterprise", founded_year: {$eq: 2005}}]}, {name: 1, category_code: 1, founded_year: 1});
+
+db.companies.find({$or:[{founded_year: {$eq: 2005}}, {number_of_employees: {$eq: 20}}]}, {"founded_year": 1, "number_of_employees": 1}).sort({"number_of_employees": -1})
